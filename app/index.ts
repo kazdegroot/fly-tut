@@ -48,6 +48,7 @@ const server = http
       }
       case "GET /": {
         let currentCount = await getCurrentCount();
+        console.log({currentCount})
         res.setHeader("Content-Type", "text/html");
         res.writeHead(200);
         res.end(/* html */ `
