@@ -44,8 +44,10 @@ RUN npm run build
 FROM base
 
 ENV LITEFS_DIR="/litefs"
-ENV DATABASE_URL="file:$LITEFS_DIR/sqlite.db"
-ENV PORT="8080"
+ENV DATABASE_FILE="$LITEFS_DIR/sqlite.db"
+ENV DATABASE_URL="file:$DATABASE_FILE"
+ENV INTERNAL_PORT="8080"
+ENV PORT="8081"
 ENV NODE_ENV="production"
 
 RUN echo '#!/bin/sh\nset -xe\nsqlite3 \$DATABASE_URL' > /usr/local/bin/database_cli && chmod +x /usr/local/bin/database_cli
