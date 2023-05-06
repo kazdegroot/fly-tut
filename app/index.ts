@@ -46,6 +46,18 @@ const server = http
         res.end();
         break;
       }
+      case "GET /healthcheck": {
+        try {
+          await getCurrentCount();
+          res.writeHead(200);
+          res.end("OK");
+        } catch (e) {
+          console.error(e);
+          res.writeHead(500);
+          res.end('ERROR')
+        }
+        break;
+      }
       case "GET /": {
         let currentCount = await getCurrentCount();
         console.log({currentCount})
